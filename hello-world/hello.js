@@ -58,7 +58,7 @@ const s3 = new AWS.S3({
 
 module.exports.handler = async (event) => {
   let Key = '';
-  if (event.queryStringParameters && event.queryStringParameters['Name']) {
+  if (event.queryStringParameters && event.queryStringParameters['key']) {
     Key = event.queryStringParameters['key'];
   } else {
     return {
@@ -74,7 +74,7 @@ module.exports.handler = async (event) => {
   const params = {
     Bucket: UploadBucket,
     Key,
-    Expires: 60,
+    Expires: 3600,
   };
 
   // Get signed temporary URL from S3, with deleteObject/getObject option
